@@ -38,6 +38,9 @@ dynamic = ["version"]
 
 dependencies = [
     "typing_extensions >=3.7; python_version<'3.8'",
+    "pyaudio",
+    "typer",
+    "wave",
 ]
 
 [project.optional-dependencies]
@@ -93,3 +96,8 @@ messages_control.disable = [
   "line-too-long",
   "wrong-import-position",
 ]
+
+[project.scripts]
+sm_record = "sound_monitor.sm_record:cli"
+sm_cluster = "sound_monitor.sm_cluster:cli"
+sm_publish = "sound_monitor.sm_publish:cli"

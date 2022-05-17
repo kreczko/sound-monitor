@@ -8,8 +8,38 @@
 [![Conda-Forge][conda-badge]][conda-link]
 [![PyPI platforms][pypi-platforms]][pypi-link]
 
-[![GitHub Discussion][github-discussions-badge]][github-discussions-link]
-[![Gitter][gitter-badge]][gitter-link]
+Package for recording, clustering and publishing sound data.
+
+Features:
+- records sound data from a microphone to a wave file (WAV) + metadata (timing, location) (`sm_record`)
+- processes it to cluster similar sounds (`sm_cluster`)
+- publishes the data to a specified remote storage provider (`sm_publish`)
+
+The purpose is to study re-occuring sound events in machine rooms.
+
+## Dependencies
+
+This package uses `pyaudio` thus requires `portaudio19-dev` (or newer) to be installed.
+
+## Raspberry Pi setup
+
+```bash
+    sudo apt-get install portaudio19-dev
+    wget -qO- https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+    sudo mv bin/micromamba /usr/local/bin/micromamba
+```
+
+Create python ENV
+```
+micromamba activate
+micromamba install python=3.10 -c conda-forge
+pip install sound-monitor
+```
+
+Setup services
+```bash
+TBD
+```
 
 
 <!-- prettier-ignore-start -->
@@ -17,16 +47,10 @@
 [actions-link]:             https://github.com/kreczko/sound-monitor/actions
 [black-badge]:              https://img.shields.io/badge/code%20style-black-000000.svg
 [black-link]:               https://github.com/psf/black
-[conda-badge]:              https://img.shields.io/conda/vn/conda-forge/sound-monitor
-[conda-link]:               https://github.com/conda-forge/sound-monitor-feedstock
-[github-discussions-badge]: https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
-[github-discussions-link]:  https://github.com/kreczko/sound-monitor/discussions
-[gitter-badge]:             https://badges.gitter.im/https://github.com/kreczko/sound-monitor/community.svg
-[gitter-link]:              https://gitter.im/https://github.com/kreczko/sound-monitor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 [pypi-link]:                https://pypi.org/project/sound-monitor/
 [pypi-platforms]:           https://img.shields.io/pypi/pyversions/sound-monitor
 [pypi-version]:             https://badge.fury.io/py/sound-monitor.svg
 [rtd-badge]:                https://readthedocs.org/projects/sound-monitor/badge/?version=latest
 [rtd-link]:                 https://sound-monitor.readthedocs.io/en/latest/?badge=latest
-[sk-badge]:                 https://scikit-hep.org/assets/images/Scikit--HEP-Project-blue.svg
 <!-- prettier-ignore-end -->
+
