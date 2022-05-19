@@ -1,3 +1,5 @@
+from __future__ import annotations
 
-def cli():
+
+def publish() -> None:
     pass

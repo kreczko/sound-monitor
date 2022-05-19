@@ -10,7 +10,9 @@
 Package for recording, clustering and publishing sound data.
 
 Features:
-- records sound data from a microphone to a wave file (WAV) + metadata (timing, location) (`soundmon record`)
+
+- records sound data from a microphone to a wave file (WAV) + metadata (timing,
+  location) (`soundmon record`)
 - processes it to cluster similar sounds (`soundmon cluster`)
 - publishes the data to a specified remote storage provider (`soundmon publish`)
 
@@ -18,7 +20,8 @@ The purpose is to study re-occuring sound events in machine rooms.
 
 ## Dependencies
 
-This package uses `pyaudio` thus requires `portaudio19-dev` (or newer) to be installed.
+This package uses `pyaudio` thus requires `portaudio19-dev` (or newer) to be
+installed.
 
 ## Raspberry Pi setup
 
@@ -29,17 +32,18 @@ This package uses `pyaudio` thus requires `portaudio19-dev` (or newer) to be ins
 ```
 
 Create python ENV
-```
+
+```bash
 micromamba activate
 micromamba install python=3.10 -c conda-forge
 pip install sound-monitor
 ```
 
 Setup services
+
 ```bash
 TBD
 ```
-
 
 <!-- prettier-ignore-start -->
 [actions-badge]:            https://github.com/kreczko/sound-monitor/workflows/CI/badge.svg
@@ -52,4 +56,3 @@ TBD
 [rtd-badge]:                https://readthedocs.org/projects/sound-monitor/badge/?version=latest
 [rtd-link]:                 https://sound-monitor.readthedocs.io/en/latest/?badge=latest
 <!-- prettier-ignore-end -->
-

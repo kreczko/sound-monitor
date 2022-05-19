@@ -74,16 +74,37 @@ testpaths = [
 
 [tool.mypy]
 files = "src"
-python_version = "3.7"
+python_version = "3.10"
 warn_unused_configs = true
-strict = true
-show_error_codes = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-warn_unreachable = true
 
+show_error_codes = true
+# enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+# [[tool.mypy.overrides]] not working, setting this to false instead
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_reexport = true
+strict_equality = true
+ignore_missing_imports = true
+
+
+[[tool.mypy.overrides]]
+module = "typer.*"
+implicit_reexport = true
 
 [tool.isort]
 profile = "black"
+known_third_party = ["typer", "click", "pyaudio", "rich", "wave"]
 
 
 [tool.pylint]
