@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+import json
+from dataclasses import asdict, dataclass
 
 import pyaudio
 import wave
@@ -19,6 +20,9 @@ class RecordingSettings:
     channels: int = DEFAULT_CHANNELS
     rate_in_Hz: int = DEFAULT_RATE
     recording_time_in_s: int = DEFAULT_RECORDING_TIME
+
+    def to_json(self) -> str:
+        return json.dumps(asdict(self))
 
 
 def _save_to_wave(
