@@ -1,7 +1,9 @@
 import pyaudio
 import wave
 
-def cli():
+DEFAULT_CHUNK_SIZE = 8192
+
+def record():
     # example from https://realpython.com/playing-and-recording-sound-python/
     chunk = 1024  # Record in chunks of 1024 samples
     sample_format = pyaudio.paInt16  # 16 bits per sample
@@ -27,7 +29,7 @@ def cli():
         data = stream.read(chunk)
         frames.append(data)
 
-    # Stop and close the stream 
+    # Stop and close the stream
     stream.stop_stream()
     stream.close()
     # Terminate the PortAudio interface

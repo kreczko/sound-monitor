@@ -10,9 +10,9 @@
 Package for recording, clustering and publishing sound data.
 
 Features:
-- records sound data from a microphone to a wave file (WAV) + metadata (timing, location) (`sm_record`)
-- processes it to cluster similar sounds (`sm_cluster`)
-- publishes the data to a specified remote storage provider (`sm_publish`)
+- records sound data from a microphone to a wave file (WAV) + metadata (timing, location) (`soundmon record`)
+- processes it to cluster similar sounds (`soundmon cluster`)
+- publishes the data to a specified remote storage provider (`soundmon publish`)
 
 The purpose is to study re-occuring sound events in machine rooms.
 

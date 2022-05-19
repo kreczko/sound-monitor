@@ -39,6 +39,7 @@ dynamic = ["version"]
 dependencies = [
     "typing_extensions >=3.7; python_version<'3.8'",
     "pyaudio",
+    "rich",
     "typer",
     "wave",
 ]
@@ -98,6 +99,4 @@ messages_control.disable = [
 ]
 
 [project.scripts]
-sm_record = "sound_monitor.sm_record:cli"
-sm_cluster = "sound_monitor.sm_cluster:cli"
-sm_publish = "sound_monitor.sm_publish:cli"
+soundmon = "sound_monitor.cli:main"
