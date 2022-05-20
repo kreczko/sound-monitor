@@ -1,3 +1,4 @@
+"""Command line interface for the sound monitor."""
 from __future__ import annotations
 
 from typing import Any
@@ -11,11 +12,13 @@ app = typer.Typer()
 
 
 def main() -> Any:
+    """Main function."""
     return app()
 
 
 @app.command()
 def version() -> None:
+    """Print the version number."""
     rich.print(f"[blue]Sounds Monitor Version[/]: [magenta]{__version__}[/]")
 
 
@@ -39,7 +42,7 @@ def record(
         "-n",
         help="Number of channels to use",
     ),
-    rate_in_Hz: int = typer.Option(
+    rate_in_hz: int = typer.Option(
         _record.DEFAULT_RATE,
         "--rate",
         "-r",
@@ -58,11 +61,12 @@ def record(
         help="Output file name",
     ),
 ) -> None:
+    """Record sound."""
     settings = _record.RecordingSettings(
         chunk_size=chunk_size,
         sample_format=sample_format,
         channels=channels,
-        rate_in_Hz=rate_in_Hz,
+        rate_in_hz=rate_in_hz,
         recording_time_in_s=recording_time_in_s,
     )
     # TODO:
@@ -81,9 +85,11 @@ def record(
 
 @app.command()
 def cluster() -> None:
+    """Cluster sounds data into sound events."""
     _cluster.cluster()
 
 
 @app.command()
 def publish() -> None:
+    """Publish sound events to one or more platform."""
     _publish.publish()

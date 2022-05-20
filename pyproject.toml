@@ -104,7 +104,7 @@ implicit_reexport = true
 
 [tool.isort]
 profile = "black"
-known_third_party = ["typer", "click", "pyaudio", "rich", "wave"]
+known_third_party = ["typer", "click", "pyaudio", "rich"]
 
 
 [tool.pylint]
