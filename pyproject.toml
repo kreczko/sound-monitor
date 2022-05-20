@@ -16,7 +16,7 @@ license = { file = "LICENSE" }
 description = "Package for recording, categorizing, and publishing sound data for monitoring"
 readme = "README.md"
 
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 classifiers = [
     "License :: OSI Approved :: BSD License",
@@ -27,7 +27,6 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -108,7 +107,7 @@ known_third_party = ["typer", "click", "pyaudio", "rich"]
 
 
 [tool.pylint]
-master.py-version = "3.7"
+master.py-version = "3.8"
 master.ignore-paths= ["src/sound_monitor/_version.py"]
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
