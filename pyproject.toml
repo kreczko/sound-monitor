@@ -36,7 +36,6 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-    "typing_extensions >=3.7; python_version<'3.8'",
     "pyaudio",
     "rich",
     "typer",
