@@ -67,6 +67,12 @@ def record(
         "-o",
         help="Output file name",
     ),
+    device_index: int = typer.Option(
+        _record.DEFAULT_DEVICE_INDEX,
+        "--device-index",
+        "-d",
+        help="Device index to use",
+    ),
 ) -> None:
     """Record sound."""
     settings = _record.RecordingSettings(
@@ -75,20 +81,24 @@ def record(
         channels=channels,
         rate_in_hz=rate_in_hz,
         recording_time_in_s=recording_time_in_s,
+        device_index=device_index,
+        output_folder=output_folder,
+        number_of_recordings=number_of_recordings,
     )
+    json_file = os.path.join(output_folder, "settings.json")
+    with open(json_file, "w") as f:
+        f.write(settings.to_json())
     # TODO:
-    # Change output_file_name to a output directory
-    # save settings to a JSON file
     # record until the user presses Ctrl-C
     # save the recording to a set of WAV files
     # file format: <output dir>/<timestamp>_<sensor_id>.wav
     # with
     # timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%I_%M_%S_%f")
-    for n in range(number_of_recordings):
+    for n in range(settings.number_of_recordings):
         typer.echo("Doing recording run {n}")
         timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%I_%M_%S_%f")
         output_file_name = f"{timestamp}_{n}.wav"
-        output_file_name = os.path.join(output_folder, output_file_name)
+        output_file_name = os.path.join(settings.output_folder, output_file_name)
         _record.record(
             settings=settings,
             output_file_name=output_file_name,

@@ -12,6 +12,7 @@ DEFAULT_SAMPLE_FORMAT = pyaudio.paInt16  # 16 bits per sample
 DEFAULT_CHANNELS = 1
 DEFAULT_RATE = 44100  # Hz
 DEFAULT_RECORDING_TIME = 3  # seconds
+DEFAULT_DEVICE_INDEX = 0
 
 
 @dataclass
@@ -23,6 +24,9 @@ class RecordingSettings:
     channels: int = DEFAULT_CHANNELS
     rate_in_hz: int = DEFAULT_RATE
     recording_time_in_s: int = DEFAULT_RECORDING_TIME
+    device_index: int = DEFAULT_DEVICE_INDEX
+    output_folder: str = "/tmp"
+    number_of_recordings: int = 1
 
     def to_json(self) -> str:
         """Convert settings to JSON."""
@@ -59,6 +63,7 @@ def record(
         rate=settings.rate_in_hz,
         frames_per_buffer=settings.chunk_size,
         input=True,
+        input_device_index=settings.device_index,
         output=False,
     )
 
