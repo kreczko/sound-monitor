@@ -1,6 +1,7 @@
 """Command line interface for the sound monitor."""
 from __future__ import annotations
-
+import os
+import datetime
 from typing import Any
 
 import rich
@@ -54,8 +55,14 @@ def record(
         "-t",
         help="Recording time in seconds",
     ),
-    output_file_name: str = typer.Option(
-        "recording.wav",
+    number_of_recordings: int = typer.Option(
+        1,
+        "--number-of-recordings",
+        "-p",
+        help="number of recordings",
+    ),
+    output_folder: str = typer.Option(
+        "/tmp",
         "--output",
         "-o",
         help="Output file name",
@@ -77,10 +84,16 @@ def record(
     # file format: <output dir>/<timestamp>_<sensor_id>.wav
     # with
     # timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%I_%M_%S_%f")
-    _record.record(
-        settings=settings,
-        output_file_name=output_file_name,
-    )
+    for n in range(number_of_recordings):
+        typer.echo("Doing recording run {n}")
+        timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%I_%M_%S_%f")
+        output_file_name = f"{timestamp}_{n}.wav"
+        output_file_name = os.path.join(output_folder, output_file_name)
+        _record.record(
+            settings=settings,
+            output_file_name=output_file_name,
+        )
+
 
 
 @app.command()
