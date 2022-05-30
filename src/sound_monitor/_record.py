@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 
 import pyaudio
 
-DEFAULT_CHUNK_SIZE = 8192
+DEFAULT_CHUNK_SIZE = 8192 # 2^13 samples for buffer
 DEFAULT_SAMPLE_FORMAT = pyaudio.paInt16  # 16 bits per sample
 DEFAULT_CHANNELS = 1
 DEFAULT_RATE = 44100  # Hz
