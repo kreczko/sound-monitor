@@ -7,7 +7,9 @@ from dataclasses import asdict, dataclass
 
 import pyaudio
 
-DEFAULT_CHUNK_SIZE = 8192 # 2^13 samples for buffer
+from ._logger import logger
+
+DEFAULT_CHUNK_SIZE = 8192  # 2^13 samples for buffer
 DEFAULT_SAMPLE_FORMAT = pyaudio.paInt16  # 16 bits per sample
 DEFAULT_CHANNELS = 1
 DEFAULT_RATE = 44100  # Hz
@@ -41,7 +43,7 @@ def _save_to_wave(
 ) -> None:
     """Save recorded data to a wave file."""
     # Save the recorded data as a WAV file
-    print(f"Saving file {output_file_name}")
+    logger.info(f"Saving file {output_file_name}")
     wave_file = wave.open(output_file_name, "wb")
     wave_file.setnchannels(settings.channels)
     wave_file.setsampwidth(sample_size)
@@ -56,7 +58,7 @@ def record(
 ) -> None:
     """Record sound."""
     port_audio = pyaudio.PyAudio()  # Create an interface to PortAudio
-    print(f"Starting recording of {output_file_name}")
+    logger.info(f"Starting recording of {output_file_name}")
     stream = port_audio.open(
         format=settings.sample_format,
         channels=settings.channels,
@@ -82,7 +84,7 @@ def record(
     # Terminate the PortAudio interface
     port_audio.terminate()
 
-    print(f"Finished recording of {output_file_name}")
+    logger.info(f"Finished recording of {output_file_name}")
     _save_to_wave(
         settings=settings,
         sample_size=port_audio.get_sample_size(settings.sample_format),

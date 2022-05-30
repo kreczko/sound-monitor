@@ -1,14 +1,15 @@
 """Command line interface for the sound monitor."""
 from __future__ import annotations
+
 import os
-import datetime
 import socket
 from typing import Any
 
 import rich
 import typer
 
-from . import __version__, _cluster, _publish, _record
+from . import __version__, _cluster, _date, _publish, _record
+from ._logger import logger
 
 app = typer.Typer()
 
@@ -94,16 +95,15 @@ def record(
     # save the recording to a set of WAV files
     # file format: <output dir>/<timestamp>_<sensor_id>.wav
     sensor_id = socket.gethostname()
-    for _ in range(settings.number_of_recordings):
-        typer.echo("Doing recording run {n}")
-        timestamp = datetime.datetime.now().strftime("%Y_%m_%d_T%H_%M_%S_%f")
+    for n in range(settings.number_of_recordings):
+        logger.info(f"Recording #{n} on {sensor_id}")
+        timestamp = _date.current_formatted_date()
         output_file_name = f"{timestamp}_{sensor_id}.wav"
         output_file_name = os.path.join(settings.output_folder, output_file_name)
         _record.record(
             settings=settings,
             output_file_name=output_file_name,
         )
-
 
 
 @app.command()
