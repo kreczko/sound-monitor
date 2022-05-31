@@ -1,0 +1,9 @@
+recording:
+  chunk_size: 8192
+  sample_rate: 44100 # Hz
+  channels: 1
+  format: 8 # 16 bit (yes, pyaudio.paInt16 has the value of 8)
+  input_device: 0
+  recording_time: 10 # seconds
+  output_folder: /tmp/sound_monitor/
+  number_of_files: 1 # number of files to record (each of length recording_time)

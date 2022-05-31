@@ -1,0 +1,4 @@
+defaults:
+  - defaults_for_recording
+
+number_of_files: 3 # number of files to record (each of length recording_time)
