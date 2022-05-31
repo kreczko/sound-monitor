@@ -43,7 +43,7 @@ def _save_to_wave(
 ) -> None:
     """Save recorded data to a wave file."""
     # Save the recorded data as a WAV file
-    logger.info(f"Saving file {output_file_name}")
+    logger.info("Saving file %s", output_file_name)
     wave_file = wave.open(output_file_name, "wb")
     wave_file.setnchannels(settings.channels)
     wave_file.setsampwidth(sample_size)
@@ -58,7 +58,7 @@ def record(
 ) -> None:
     """Record sound."""
     port_audio = pyaudio.PyAudio()  # Create an interface to PortAudio
-    logger.info(f"Starting recording of {output_file_name}")
+    logger.info("Starting recording of %s", output_file_name)
     stream = port_audio.open(
         format=settings.sample_format,
         channels=settings.channels,
@@ -84,7 +84,7 @@ def record(
     # Terminate the PortAudio interface
     port_audio.terminate()
 
-    logger.info(f"Finished recording of {output_file_name}")
+    logger.info("Finished recording of %s", output_file_name)
     _save_to_wave(
         settings=settings,
         sample_size=port_audio.get_sample_size(settings.sample_format),

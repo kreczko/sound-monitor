@@ -88,15 +88,21 @@ def record(
         number_of_recordings=number_of_recordings,
     )
     json_file = os.path.join(output_folder, "settings.json")
-    with open(json_file, "w") as f:
-        f.write(settings.to_json())
+    with open(json_file, "w", encoding="utf-8") as settings_file:
+        settings_file.write(settings.to_json())
     # TODO:
     # record until the user presses Ctrl-C
     # save the recording to a set of WAV files
     # file format: <output dir>/<timestamp>_<sensor_id>.wav
     sensor_id = socket.gethostname()
-    for n in range(settings.number_of_recordings):
-        logger.info(f"Recording #{n} on {sensor_id}")
+    for nth_recording in range(settings.number_of_recordings):
+        logger.info(
+            "Recording #%(nth_recording)d on %(sensor_id)s",
+            extra=dict(
+                nth_recording=nth_recording,
+                sensor_id=sensor_id,
+            )
+        )
         timestamp = _date.current_formatted_date()
         output_file_name = f"{timestamp}_{sensor_id}.wav"
         output_file_name = os.path.join(settings.output_folder, output_file_name)

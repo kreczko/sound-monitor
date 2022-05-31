@@ -1,3 +1,4 @@
+"""Logging module for soundmon"""
 from __future__ import annotations
 
 import logging
@@ -14,10 +15,10 @@ class LevelFormatter(logging.Formatter):
 
     def __init__(self, fmt: str, datefmt: str, level_fmts: dict[int, str]):
         self._level_formatters = {}
-        for level, format in level_fmts.items():
+        for level, format_str in level_fmts.items():
             # Could optionally support level names too
             self._level_formatters[level] = logging.Formatter(
-                fmt=format, datefmt=datefmt
+                fmt=format_str, datefmt=datefmt
             )
         # self._fmt will be the default format
         super().__init__(fmt=fmt, datefmt=datefmt)
