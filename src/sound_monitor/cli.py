@@ -101,7 +101,7 @@ def record(
             extra=dict(
                 nth_recording=nth_recording,
                 sensor_id=sensor_id,
-            )
+            ),
         )
         timestamp = _date.current_formatted_date()
         output_file_name = f"{timestamp}_{sensor_id}.wav"
